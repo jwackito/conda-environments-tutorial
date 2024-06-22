@@ -10,6 +10,7 @@
 		- Estas usando bash. A pesar que hoy en día existe [otros shells más potentes](https://www.redswitches.com/blog/types-of-linux-shells/#8friendlyinteractiveshellfish) y que `conda` se integra bien con la mayoría de ellos, nunca he tenido tiempo de aprender a usarlos. Si seguis estos pasos usando otro shell y encontras diferencias, por favor submitea un pull request.
 		- `$HOME` hace referencia al home del usuario, normalmente `/home/<nombre_de_usuario>`. Esta es una variable de entorno definida en Linux que puede verse con el comando `echo $HOME`.
 		- `$MINI3HOME` hace referencia al directorio de instalación de Miniconda 3, normalmente `$HOME/miniconda3`. Al contrario, esta no es una variable de entorno definida en Linux, sino solo una referencia a la carpeta donde se instala miniconda con el propósito de este tutorial.
+	- Ante cualquier error u omisión, no dudes en mandarme un pull request.
 - ## Instalar miniconda 3
   collapsed:: true
 	- Ir a [la doc de miniconda](https://docs.anaconda.com/miniconda/) y bajar la última versión del script de instalación. Normalmente disponible en el enlace
@@ -99,5 +100,38 @@
 		- ```
 		  conda deactivate
 		  ```
-	- Para eliminar un environment
-- ## Instalando
+	- Para eliminar un environment y todo el cache de archivos descargados
+		- ```
+		  conda env remove -n <environment_name>
+		  conda clean --all
+		  ```
+- ## Instalando paquetes y librerías
+	- Para instalar paquetes o librerías en `conda`, existen varias maneras. Se puede usar `conda install` en cuyo caso se van a usar los canales (`channels`) de conda para obtener los paquetes, o `pip` para instalar paquetes de Python. Incluso se pueden usar otros gestores de paquetes como `apt` o `ckan` pero este turorial no va de eso.
+	- Cuando creas un env nuevo, en principio está vacio. Esto quiere decir que no está instalado ni Python, ni `pip`, ni nada. Si dentro de un env recién creado podes hacer `python -c 'import datetime'` y no falla, es por que estás usando el Python del sistema operativo, versión incluida y todo.
+		- ```
+		  $ python --version
+		   Python 3.9.18
+		  ```
+	- Primero entonces instala Python y `pip`. Para eso usa  el comando `conda install`. No olvides asegurarte de haber activado el environment correcto.
+		- ```
+		  conda activate mlbase
+		  conda install python=3.10 pip
+		  ```
+		- Acá se puede especificar la versión particular de Python a instalar. Si no se pone nada, se asume la última. Ojo, que muchas librerías van corriendo de atrás y pueden tardar meses en tener disponible una versión para la última versión de Python. Yo en general, siempre uso una o dos versiones anteriores a la ultima. Se pueden ver las versiones con `conda search python`
+	- A mi me gusta instalar con `pip` pero que también pueden instalarse paquetes y librerías utilizando `conda install`. Algunas requieren activar el canal `conda-forge`. Simplemente se activa pasando como argumento `-c` al momento de instalar. También funciona para buscar. Por ejemplo:
+		- ```
+		  conda install -c conda-forge jupyterhub
+		  conda search -c conda-forge python
+		  ```
+	- Mi pila de librerías y paquetes para data analysis consiste en las siguientes:
+		- ```
+		  pip install numpy pandas matplotlib ipython scipy statsmodels scikit-learn
+		  ```
+	- ***Importante:*** No olvides activar el env antes de instalar nada. Primero lo creas y luego lo activas.
+		- ```
+		  conda create -n mlbase
+		  conda activate mlbase
+		  ```
+	- ***Importante***: No utilices `pip` para instalar nada en un entorno recién creado. Primero instala Python y `pip` en el nuevo entorno usando `conda install`. De lo contrario, estarás instalando los paquetes usando el `pip` del sistema operativo!!
+	-
+-
