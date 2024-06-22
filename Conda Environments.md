@@ -106,6 +106,7 @@
 		  conda clean --all
 		  ```
 - ## Instalando paquetes y librerías
+  collapsed:: true
 	- Para instalar paquetes o librerías en `conda`, existen varias maneras. Se puede usar `conda install` en cuyo caso se van a usar los canales (`channels`) de conda para obtener los paquetes, o `pip` para instalar paquetes de Python. Incluso se pueden usar otros gestores de paquetes como `apt` o `ckan` pero este turorial no va de eso.
 	- Cuando creas un env nuevo, en principio está vacio. Esto quiere decir que no está instalado ni Python, ni `pip`, ni nada. Si dentro de un env recién creado podes hacer `python -c 'import datetime'` y no falla, es por que estás usando el Python del sistema operativo, versión incluida y todo.
 		- ```
@@ -123,15 +124,30 @@
 		  conda install -c conda-forge jupyterhub
 		  conda search -c conda-forge python
 		  ```
+- ### Mis librerías por defecto
 	- Mi pila de librerías y paquetes para data analysis consiste en las siguientes:
+		- numpy: Librería de vectores y cálculo numérico. Es dependencia de la mayoría de los demás paquetes, así que puede obviarse.
+		- pandas: Para trabajar con datasets.
+		- matplotlib: Para hacer plots. Otres gustan más de seaborn y hasta plotly. Allá elles, pero son también opciones válidas e integran bien con JupyterHub.
+		- ipython: Una consola interactiva de python con esteroides. Para probar cosas rápido es una masa y tiene mucha mágia (%magic).
+		- scipy: Implementa varios algoritmos de optimización, por ejemplo para ajustar (fitting) polinomios.
+		- statsmodels: Para cosas de estadística, por ejemplo, tests de hipótesis de todos los colores, distribuciones de probabilidad, analisis bayesiano, etc etc etc.
+		- scikit-learn: Para modelos básicos (y no tan básicos) de Machine Learning.
 		- ```
 		  pip install numpy pandas matplotlib ipython scipy statsmodels scikit-learn
 		  ```
+	- Además, suelo querer usar JupyterHub/Lab local en mi computadora. Para eso, lo instalo usando `conda`
+		- ```
+		  conda install -c conda-forge jupyterhub jupyterlab nodejs nb_conda_kernels
+		  ```
+		- JupyterHub permite editar y correr kernels de python (usando diferentes environments) desde el navegador. A algunos les resulta cómodo pero yo para muchas cosas prefiero Ipython. Lo bueno de JupyterHub es que tiene un Lab que permite administrar los notebooks en proyectos, administrar los kernels y otros chiches, todo desde el navegador. Además soporta muchos usuarios. Si estas usando este tutorial para configurar una máquina de cómputo compartida en una universidad por ejemplo, a tus usuarios les va a encantar. No es nada que no se pueda hacer con una terminal de ssh + ipython, pero la comodidad del navegador vende.
+		- Más sobre como configurarlo una vez instalado en la sección ((66774552-e7fc-4666-b307-262156d860ca)).
 	- ***Importante:*** No olvides activar el env antes de instalar nada. Primero lo creas y luego lo activas.
 		- ```
 		  conda create -n mlbase
 		  conda activate mlbase
 		  ```
-	- ***Importante***: No utilices `pip` para instalar nada en un entorno recién creado. Primero instala Python y `pip` en el nuevo entorno usando `conda install`. De lo contrario, estarás instalando los paquetes usando el `pip` del sistema operativo!!
+	- ***Importante***: No utilices `pip` para instalar nada en un entorno recién creado. Primero instala Python y `pip` en el nuevo entorno usando `conda install`. De lo contrario, estarás instalando los paquetes usando el `pip` del sistema operativo y los paquetes que instalen van a terminar en el Python del sistema!
+- ### Configurando JupyterHub/Lab
+  id:: 66774552-e7fc-4666-b307-262156d860ca
 	-
--
