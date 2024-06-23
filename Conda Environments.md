@@ -145,9 +145,9 @@
 		- ***Importante***: No utilices `pip` para instalar nada en un entorno recién creado. Primero instala Python y `pip` en el nuevo entorno usando `conda install`. De lo contrario, estarás instalando los paquetes usando el `pip` del sistema operativo y los paquetes que instalen van a terminar en el Python del sistema!
 	- ### Otros paquetes
 		- `htop`: En general, yo instalo `htop` que no viene por defecto en ubuntu. Es un visor de sistema que permite monitorear el consumo de recursos del sistema desde la terminal.
-			- ![image.png](../assets/image_1719095527342_0.png)
+			- ![image.png](assets/image_1719095527342_0.png)
 		- `nvtop`: Permite ver los recursos usados por la placa de video.
-			- ![image.png](../assets/image_1719097577912_0.png)
+			- ![image.png](assets/image_1719097577912_0.png)
 		- `vim`: Si, `vim` full. Si todavía usas `nano`, yo diría que ya es hora que vayas haciéndote adulte. Y si usas `emacs`, yo diría que también le dejes lugar a tu niñe interior.
 		-
 	- ### Los drivers de Nvidia
@@ -233,7 +233,7 @@
 				  jupyterhub -f /home/<your_user>/miniconda3/envs/jupyter/etc/config.py
 				  ```
 				- Luego de esto, entrando a `https://yourdomain.tld:8443` deberías poder ver una pantalla como esta:
-					- ![image.png](../assets/image_1719104332986_0.png)
+					- ![image.png](assets/image_1719104332986_0.png)
 				- Y deberías poder loguearte usando el mismo usuario y password que usas para loguearte en tu Linux. Además, una vez logueado podras ir a `https://yourdomain.tld:8443/hub/admin`, donde podrás agregar y eliminar usuarios, ver quien está conectado, iniciar o parar kernels, etc. Have fun!!
 			- Ahora vamos crear un servicio para que se inicie JupyterHub sin tener que ejecutar lo anterior cada vez.
 				- Ejecuta el comando `sudo vim /etc/systemd/system/jupyterhub.service` y edita el contenido para que se vea como lo siguiente.
