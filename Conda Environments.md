@@ -1,6 +1,5 @@
 # Conda environments para todes
 - ## Introdución
-  collapsed:: true
 	- Paso a paso para instalar mi setup de Data Analysis ~~Conda Environments~~ como a mi me gusta. Esto incluye `Conda`, `Jupyter Hub/Lab` en modo servidor para varios usuarios, los `drivers de nvidia` si tenes GPUs discretas para hacer cómputo, algunas herramientas para monitorear el estado del sistema y ver que ande todo (`htop`, `nvtop`).
 		- Based on this two awesome (but a bit outdated) tutorials
 		- [Definitive Guide to Python Virtual Environments](https://www.whiteboxml.com/blog/the-definitive-guide-to-python-virtual-environments-with-conda)
@@ -13,7 +12,6 @@
 		- `$MINI3HOME` hace referencia al directorio de instalación de Miniconda 3, normalmente `$HOME/miniconda3`. Al contrario, esta no es una variable de entorno definida en Linux, sino solo una referencia a la carpeta donde se instala miniconda con el propósito de este tutorial.
 	- Ante cualquier error u omisión, no dudes en mandarme un pull request.
 - ## Instalar miniconda 3
-  collapsed:: true
 	- Ir a [la doc de miniconda](https://docs.anaconda.com/miniconda/) y bajar la última versión del script de instalación. Normalmente disponible en el enlace
 		- [Miniconda3-latest-Linux-x86_64.sh](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh)
 	- ```bash
@@ -85,7 +83,6 @@
 	  ```
 	- El comando `conda info` muestra información acerca del environment que está activo y los paths a los archivos de configuración por defecto. Esto es super importante, sobre todo la ubicación del archivo `.condarc`, el path para los environments por defecto, etc.
 - ## Creando y activando environments en `conda`
-  collapsed:: true
 	- `conda` instala por defecto un enviroment que se llama `base`. De hecho, `conda` está instalado en este environment como una librería más. Si bien es posible instalar paquetes y librerías en este environment, no puedo dejar de expresar mi más profundo apoyo al consejo del tutorial de [WhiteBox](https://www.whiteboxml.com/blog/the-definitive-guide-to-python-virtual-environments-with-conda)...
 		- ```
 		  Don't mess with the base environment.
@@ -224,7 +221,6 @@
 				  0 0,12 * * * /home/<your_user>/miniconda3/envs/jupyter/bin/python -c 'import random; import time; time.sleep(random.random() * 3600)' && sudo /home/<your_user>/miniconda3/envs/jupyter/bin/certbot renew -q
 				  ```
 		- #### Opción sin LetsEncrypt
-		  collapsed:: true
 			- La verdad lo anterior es mejor y por lejos lo recomendado. Pero a lo mejor no tenes un dominio y no queres registrar uno. O estás corriendo esto en tu computadora portatil, en cuyo caso, tal vez ni siquiera sea necesario usar HTTPS (yo le pondría HTTPS igual, aunque sea para practicar).
 			- La opción consiste en usar certificados autofirmados. Esa opción va más allá de esta guia pero podes empezar leyendo en la documentación de [JupyterHub Docs - Using an SSL Certificate](https://jupyterhub.readthedocs.io/en/stable/tutorial/getting-started/security-basics.html#using-an-ssl-certificate) y luego buscando como crear un Self Signed Certificate in Linux en tu buscador favorito. Los pasos para instalarlo son los mismos, pero un usuario que quiera conectarse a tu servidor de JupyterHub desde afuera recibirá una advertencia de que los certificados no son confiables. Sin embargo, la conexión estará encriptada de todas maneras :)
 		- #### Corriendo JupyterHub como servicio de `systemd`
