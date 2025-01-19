@@ -175,13 +175,12 @@
 			  |    0   N/A  N/A      1524      G   /usr/lib/xorg/Xorg                            426MiB |
 			  ```
 	- ### Configurando JupyterHub/Lab
-	  id:: 66774552-e7fc-4666-b307-262156d860ca
 		- Además, suelo querer usar JupyterHub/Lab local en mi computadora. Para eso, lo instalo usando `conda` en un environment para él solo. Además, con sugieren el tutorial de WhiteBox, instalo nodejs para poder instalar plugins,
 			- ```
 			  conda create -n jupyter
 			  conda activate jupyter
 			  conda install python pip
-			  conda install -c conda-forge jupyterhub jupyterlab nodejs nb_conda_kernels
+			  pip install conda-forge jupyterhub jupyterlab nodejs
 			  ```
 		- JupyterHub permite editar y correr kernels de Python (usando diferentes environments) desde el navegador. A algunos les resulta cómodo pero yo para muchas cosas prefiero Ipython. Lo bueno de JupyterHub es que tiene un Lab que permite administrar los notebooks en proyectos, administrar los kernels y otros chiches, todo desde el navegador. Además soporta muchos usuarios. Si estas usando este tutorial para configurar una máquina de cómputo compartida en una universidad por ejemplo, a tus usuarios les va a encantar. No es nada que no se pueda hacer con una terminal de `ssh` + `ipython`, pero la comodidad del navegador vende.
 		- Lo interesante es que además puede dejarse corriendo como un servicio, de manera similar a lo que hace [TLJH](https://tljh.jupyter.org/en/latest/index.html) pero sin las restricciones de este último.
